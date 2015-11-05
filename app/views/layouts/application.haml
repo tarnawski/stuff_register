@@ -12,9 +12,30 @@
     %nav.navbar.navbar-default
       .container-fluid
         .navbar-header
-          %span.navbar-brand #{AppConfig.workshops_name}
+          %span.navbar-brand StuffRegister
+        %ul.nav.navbar-nav
+          %li
+            = link_to("Wszystkie zasoby", stuffs_path)
+          %li
+            = link_to("Typy", types_path)
+          %li
+            = link_to("Sale", rooms_path)
+          %li
+            = link_to("Źródła finansowania", fundings_path)
+                  
+
         %p.navbar-text.navbar-right
-          Links should go here
+          %ul.nav.navbar-nav.navbar-right
+            -if user_signed_in?
+              %li
+                = link_to("Profil", edit_user_registration_path)
+              %li
+                = link_to('Wyloguj', destroy_user_session_path,  :method=>'delete')
+            -else
+              %li
+                %a{:href => new_user_session_path} Zaloguj się
+              %li
+                %a{:href => new_user_registration_path} Zarejestruj się
     .container-fluid
       .row
         .col-lg-12
