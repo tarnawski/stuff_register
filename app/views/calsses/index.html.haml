@@ -1,0 +1,19 @@
+%h1 Listing calsses
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @calsses.each do |calss|
+    %tr
+      %td= calss.name
+      %td= link_to 'Show', calss
+      %td= link_to 'Edit', edit_calss_path(calss)
+      %td= link_to 'Destroy', calss, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Calss', new_calss_path
