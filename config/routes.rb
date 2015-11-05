@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
 
-  resources :fundings
+root 'stuffs#index'
 
-  resources :types
+  resources :types do
+    resources :stuffs
+  end
 
-  resources :calsses
-
-  resources :stuffs
-
+  resources :calsses do 
+    resources :stuffs
+  end
   devise_for :users
+  resources :fundings
 
 end
