@@ -9,6 +9,7 @@ class TypesController < ApplicationController
   end
 
   def show
+    @stuffs = Stuff.all
     respond_with(@type)
   end
 
