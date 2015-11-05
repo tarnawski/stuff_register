@@ -1,5 +1,13 @@
 class StuffsController < ApplicationController
   before_action :set_stuff, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :show, :new, :edit, :update, :destroy, :create]
+  before_action :admin!, only: [:new, :edit, :update, :destroy, :create]
+
+ def admin!
+  unless current_user.admin?
+    redirect_to root_path, notice: 'Nie możesz oglądac tej strony.' 
+  end
+  end
 
   respond_to :html
 
