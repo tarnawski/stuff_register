@@ -17,11 +17,11 @@
   = @stuff.type_id
 %p
   %b Class:
-  = @stuff.class_id
+  = @stuff.room_id
 %p
   %b User:
   = @stuff.user_id
+%p
+  %b Funding source:
+  = @stuff.funding_id
 
-= link_to 'Edit', edit_stuff_path(@stuff)
-\|
-= link_to 'Back', stuffs_path

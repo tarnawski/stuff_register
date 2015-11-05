@@ -9,6 +9,7 @@ class FundingsController < ApplicationController
   end
 
   def show
+    @stuffs = Stuff.where(funding_id: params[:id])
     respond_with(@funding)
   end
 

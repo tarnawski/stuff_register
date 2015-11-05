@@ -1,9 +1,35 @@
 %p#notice= notice
 
 %p
-  %b Name:
+%h1 
+  Listing stuffs in class 
   = @room.name
 
-= link_to 'Edit', edit_room_path(@room)
-\|
+%table.table
+  %tr
+    %th Name
+    %th Description
+    %th Price
+    %th In stock
+    %th Type
+    %th Class
+    %th User
+    %th Funding source
+    %th
+    %th
+    %th
+
+  - @stuffs.each do |stuff|
+    %tr
+      %td= stuff.name
+      %td= stuff.description
+      %td= stuff.price
+      %td= stuff.in_stock
+      %td= stuff.type_id
+      %td= stuff.room_id
+      %td= stuff.user_id
+      %td= stuff.funding_id
+
+%br
+
 = link_to 'Back', rooms_path

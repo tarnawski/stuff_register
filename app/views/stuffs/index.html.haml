@@ -1,6 +1,6 @@
 %h1 Listing stuffs
 
-%table
+%table.table
   %tr
     %th Name
     %th Description
@@ -9,6 +9,7 @@
     %th Type
     %th Class
     %th User
+    %th Funding source
     %th
     %th
     %th
@@ -20,8 +21,9 @@
       %td= stuff.price
       %td= stuff.in_stock
       %td= stuff.type_id
-      %td= stuff.class_id
+      %td= stuff.room_id
       %td= stuff.user_id
+      %td= stuff.funding_id
       %td= link_to 'Show', stuff
       %td= link_to 'Edit', edit_stuff_path(stuff)
       %td= link_to 'Destroy', stuff, :method => :delete, :data => { :confirm => 'Are you sure?' }

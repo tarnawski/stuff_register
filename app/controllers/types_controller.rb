@@ -9,7 +9,7 @@ class TypesController < ApplicationController
   end
 
   def show
-    @stuffs = Stuff.all
+    @stuffs = Stuff.where(type_id: params[:id])
     respond_with(@type)
   end
 

@@ -1,14 +1,32 @@
-= simple_form_for(@stuff) do |f|
-  = f.error_notification
+= form_for [@type, @stuff] do |f|
+  - if @stuff.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@stuff.errors.count, "error")} prohibited this question from being saved:"
+      %ul
+        - @stuff.errors.full_messages.each do |msg|
+          %li= msg
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :description
+    = f.text_area :description, class: 'form-control'
+  .form-group
+    = f.label :price
+    = f.text_field :price, class: 'form-control'
+  .form-group
+    = f.label :in_stock
+    = f.check_box :in_stock
+  .form-group 
+    = f.label :type_id
+    = f.collection_select :type_id, Type.all, :id, :name, prompt: true
+  .form-group
+    = f.label :room_id
+    = f.collection_select :room_id, Room.all, :id, :name, prompt: true
+  .form-group
+    = f.label :funding_id
+    = f.collection_select :funding_id, Funding.all, :id, :name, prompt: true
 
-  .form-inputs
-    = f.input :name
-    = f.input :description
-    = f.input :price
-    = f.input :in_stock
-    = f.input :type_id
-    = f.input :class_id
-    = f.input :user_id
 
   .form-actions
     = f.button :submit

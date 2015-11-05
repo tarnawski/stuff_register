@@ -42,6 +42,6 @@ class StuffsController < ApplicationController
     end
 
     def stuff_params
-      params.require(:stuff).permit(:name, :description, :price, :in_stock, :type_id, :class_id, :user_id)
+      params.require(:stuff).permit(:name, :description, :price, :in_stock, :type_id, :room_id, :user_id, :funding_id)
     end
 end

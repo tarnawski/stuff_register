@@ -9,6 +9,7 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @stuffs = Stuff.where(room_id: params[:id])
     respond_with(@room)
   end
 

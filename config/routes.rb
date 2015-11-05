@@ -2,16 +2,16 @@ Rails.application.routes.draw do
 
 
 
-root 'stuffs#index'
+root 'types#index'
 
   resources :types do
     resources :stuffs
   end
 
-    resources :rooms do 
-    resources :stuffs
-  end
-  devise_for :users
+  resources :rooms  
+  resources :stuffs
   resources :fundings
+  resources :stuffs
 
+  devise_for :users
 end

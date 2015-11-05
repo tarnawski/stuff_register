@@ -11,16 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105214524) do
+ActiveRecord::Schema.define(version: 20151105221159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "calsses", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "fundings", force: true do |t|
     t.string   "name"
@@ -58,10 +52,11 @@ ActiveRecord::Schema.define(version: 20151105214524) do
     t.float    "price"
     t.boolean  "in_stock"
     t.integer  "type_id"
-    t.integer  "class_id"
+    t.integer  "room_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "funding_id"
   end
 
   create_table "types", force: true do |t|
