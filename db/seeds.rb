@@ -42,7 +42,7 @@ types.each do |name|
   Type.create(name: name)
 end
 
-fundings = ["Unia Europejska", "Poństwo", "Dotacje na rozwój"]
+fundings = ["Unia Europejska", "Państwo", "Dotacje na rozwój"]
 fundings.each do |name|
   Funding.create(name: name)
 end
