@@ -12,7 +12,6 @@
     %th Description
     %th Price
     %th In stock
-    %th Type
     %th Class
     %th User
     %th Funding source
@@ -26,8 +25,7 @@
       %td= stuff.description
       %td= stuff.price
       %td= stuff.in_stock
-      %td= stuff.type_id
-      %td= stuff.room_id
+      %td= Room.find(stuff.room_id).name
       %td= stuff.user_id
       %td= stuff.funding_id
       %td= link_to 'Show', type_stuff_path(@type.id, stuff)
