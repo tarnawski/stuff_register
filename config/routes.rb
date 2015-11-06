@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 
 
+  resources :inventories
+
 root 'types#index'
 
   resources :types do

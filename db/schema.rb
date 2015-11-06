@@ -11,13 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106001123) do
+ActiveRecord::Schema.define(version: 20151106160421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "fundings", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "inventories", force: true do |t|
+    t.integer  "stuff_id"
+    t.boolean  "in_stock"
+    t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,13 +58,13 @@ ActiveRecord::Schema.define(version: 20151106001123) do
     t.string   "name"
     t.string   "description"
     t.float    "price"
-    t.boolean  "in_stock"
     t.integer  "type_id"
     t.integer  "room_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "funding_id"
+    t.integer  "inventory_id"
   end
 
   create_table "types", force: true do |t|
