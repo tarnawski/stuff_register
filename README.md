@@ -9,10 +9,15 @@
 6. Uruchom serwer rails poleceniem 'rails s'
 7. Otwórz swój localhost wpisując w przeglądarce w pole adresu: 'localhost:3000'
 8. Gotowe! Teraz możesz zalogować się na konto:
+
 Administratora:
+
 	Login: admin@example.com
 	Hasło: password
+
 Usera:	
+
 	Login: jolka@example.com
 	Hasło: password
+
 9. Do uruchomienia testów wykorzystaj komendę 'rspec spec' 
