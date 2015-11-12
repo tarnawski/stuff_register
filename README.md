@@ -1,3 +1,7 @@
+
+Dokumentacja aplikacji dostpna pod adresem: 
+https://docs.google.com/document/d/1KLZUgRcGwxjL4hM1hyaOilssK9nwF31U2-kpVMpEW7w
+
 1. Jeśli nie masz kopii aplikacji, a posiadasz uprawnienia do repzytorium sklonuj ją prostym poleceniem:
 
 	git clone https://github.com/tarnawski/stuff_register.git
