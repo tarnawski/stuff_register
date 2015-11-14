@@ -23,13 +23,26 @@ RSpec.describe RoomsController, :type => :controller do
   # This should return the minimal set of attributes required to create a valid
   # Room. As you add validations to Room, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+   let(:user) { build(:user) } 
+ before do
+    sign_in user
+    controller.stub(:user_signed_in?).and_return(true)
+    controller.stub(:current_user).and_return(user)
+    controller.stub(:authenticate_user!).and_return(user)
+    controller.current_user.stub(admin?: true)
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:valid_attributes) do
+    {
+      name: 'b 103',
+    }
+  end
+
+  let(:invalid_attributes)  do
+    {
+      name: '',
+    }
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -102,17 +115,7 @@ RSpec.describe RoomsController, :type => :controller do
 
   describe "PUT update" do
     describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested room" do
-        room = Room.create! valid_attributes
-        put :update, {:id => room.to_param, :room => new_attributes}, valid_session
-        room.reload
-        skip("Add assertions for updated state")
-      end
-
+      
       it "assigns the requested room as @room" do
         room = Room.create! valid_attributes
         put :update, {:id => room.to_param, :room => valid_attributes}, valid_session

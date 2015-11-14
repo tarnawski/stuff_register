@@ -23,13 +23,26 @@ RSpec.describe FundingsController, :type => :controller do
   # This should return the minimal set of attributes required to create a valid
   # Funding. As you add validations to Funding, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+   let(:user) { build(:user) } 
+ before do
+    sign_in user
+    controller.stub(:user_signed_in?).and_return(true)
+    controller.stub(:current_user).and_return(user)
+    controller.stub(:authenticate_user!).and_return(user)
+    controller.current_user.stub(admin?: true)
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:valid_attributes) do
+    {
+      name: 'UE',
+    }
+  end
+
+  let(:invalid_attributes)  do
+    {
+      name: '',
+    }
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -102,17 +115,7 @@ RSpec.describe FundingsController, :type => :controller do
 
   describe "PUT update" do
     describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested funding" do
-        funding = Funding.create! valid_attributes
-        put :update, {:id => funding.to_param, :funding => new_attributes}, valid_session
-        funding.reload
-        skip("Add assertions for updated state")
-      end
-
+    
       it "assigns the requested funding as @funding" do
         funding = Funding.create! valid_attributes
         put :update, {:id => funding.to_param, :funding => valid_attributes}, valid_session

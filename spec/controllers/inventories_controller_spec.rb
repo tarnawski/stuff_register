@@ -23,13 +23,30 @@ RSpec.describe InventoriesController, :type => :controller do
   # This should return the minimal set of attributes required to create a valid
   # Inventory. As you add validations to Inventory, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+   let(:user) { build(:user) } 
+ before do
+    sign_in user
+    controller.stub(:user_signed_in?).and_return(true)
+    controller.stub(:current_user).and_return(user)
+    controller.stub(:authenticate_user!).and_return(user)
+    controller.current_user.stub(admin?: true)
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:valid_attributes) do
+    {
+      stuff_id: 1,
+      in_stock: true,
+      comment: 'Porysowane',
+    }
+  end
+
+  let(:invalid_attributes)  do
+    {
+      stuff_id: '',
+      in_stock: true,
+      comment: '',
+    }
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -102,18 +119,7 @@ RSpec.describe InventoriesController, :type => :controller do
 
   describe "PUT update" do
     describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested inventory" do
-        inventory = Inventory.create! valid_attributes
-        put :update, {:id => inventory.to_param, :inventory => new_attributes}, valid_session
-        inventory.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "assigns the requested inventory as @inventory" do
+     it "assigns the requested inventory as @inventory" do
         inventory = Inventory.create! valid_attributes
         put :update, {:id => inventory.to_param, :inventory => valid_attributes}, valid_session
         expect(assigns(:inventory)).to eq(inventory)

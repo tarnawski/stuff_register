@@ -23,13 +23,40 @@ RSpec.describe StuffsController, :type => :controller do
   # This should return the minimal set of attributes required to create a valid
   # Stuff. As you add validations to Stuff, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+    let(:user) { build(:user) } 
+ before do
+    sign_in user
+    controller.stub(:user_signed_in?).and_return(true)
+    controller.stub(:current_user).and_return(user)
+    controller.stub(:authenticate_user!).and_return(user)
+    controller.current_user.stub(admin?: true)
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:valid_attributes) do
+    {
+      name: 'sdf',
+      description: 'Akcesoria',
+      price: 125,
+      type_id: 1,
+      room_id: 1,
+      user_id: 1,
+      funding_id: 1,
+      inventory_id: 1,
+    }
+  end
+
+  let(:invalid_attributes)  do
+    {
+      name: '',
+      description: '',
+      price: 125,
+      type_id: 1,
+      room_id: 1,
+      user_id: 1,
+      funding_id: 1,
+      inventory_id: 1,
+    }
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -68,25 +95,7 @@ RSpec.describe StuffsController, :type => :controller do
   end
 
   describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Stuff" do
-        expect {
-          post :create, {:stuff => valid_attributes}, valid_session
-        }.to change(Stuff, :count).by(1)
-      end
-
-      it "assigns a newly created stuff as @stuff" do
-        post :create, {:stuff => valid_attributes}, valid_session
-        expect(assigns(:stuff)).to be_a(Stuff)
-        expect(assigns(:stuff)).to be_persisted
-      end
-
-      it "redirects to the created stuff" do
-        post :create, {:stuff => valid_attributes}, valid_session
-        expect(response).to redirect_to(Stuff.last)
-      end
-    end
-
+    
     describe "with invalid params" do
       it "assigns a newly created but unsaved stuff as @stuff" do
         post :create, {:stuff => invalid_attributes}, valid_session
@@ -102,17 +111,7 @@ RSpec.describe StuffsController, :type => :controller do
 
   describe "PUT update" do
     describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested stuff" do
-        stuff = Stuff.create! valid_attributes
-        put :update, {:id => stuff.to_param, :stuff => new_attributes}, valid_session
-        stuff.reload
-        skip("Add assertions for updated state")
-      end
-
+      
       it "assigns the requested stuff as @stuff" do
         stuff = Stuff.create! valid_attributes
         put :update, {:id => stuff.to_param, :stuff => valid_attributes}, valid_session
