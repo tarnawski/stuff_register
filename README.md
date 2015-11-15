@@ -24,4 +24,4 @@ Usera:
 	Login: jolka@example.com
 	Hasło: password
 
-9. Do uruchomienia testów wykorzystaj komendę 'rspec spec' 
+9. Do uruchomienia testów wykorzystaj komendę 'rspec spec/' 
