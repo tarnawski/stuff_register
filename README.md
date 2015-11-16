@@ -25,4 +25,4 @@ Usera:
 	Hasło: password
 
 9. Do uruchomienia testów wykorzystaj komendę 'rspec spec/' 
-Add some text to check if jenkins find changes in repo and start build
+Add some text to check if jenkins find changes in repo and start builds
