@@ -1,3 +1,5 @@
 class Funding < ActiveRecord::Base
-  has_and_belongs_to_many :stuffs    
+  has_many :stuffs    
+
+  validates_presence_of :name
 end
