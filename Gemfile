@@ -22,6 +22,12 @@ gem 'ffaker'
 gem 'konf'
 gem 'heroku'
 
+gem 'pdfkit'
+#gem 'wkhtmltopdf'
+gem 'wkhtmltopdf-binary', '0.9.9'
+#gem 'wkhtmltopdf-heroku'
+
+
 
 group :development do
   gem 'spring'
@@ -32,6 +38,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'pry'
+  #windows specific
+  gem 'tzinfo-data', platforms: [:mingw, :mswin]
 end
 
 group :test do
