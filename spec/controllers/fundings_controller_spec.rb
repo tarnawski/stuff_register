@@ -23,7 +23,7 @@ RSpec.describe FundingsController, :type => :controller do
   # This should return the minimal set of attributes required to create a valid
   # Funding. As you add validations to Funding, be sure to
   # adjust the attributes here as well.
-   let(:user) { build(:user) } 
+    let(:user) { build(:user) } 
  before do
     sign_in user
     controller.stub(:user_signed_in?).and_return(true)
