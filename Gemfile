@@ -21,11 +21,20 @@ gem 'travis'
 gem 'ffaker'
 gem 'konf'
 
+<<<<<<< HEAD
 # Tools to test code
 gem 'traceroute'
 gem 'brakeman', :require => false
 gem 'rubocop', require: false
 gem 'excellent'
+=======
+gem 'pdfkit'
+#gem 'wkhtmltopdf'
+gem 'wkhtmltopdf-binary', '0.9.9'
+#gem 'wkhtmltopdf-heroku'
+
+
+>>>>>>> add pdfkit
 
 group :development do
   gem 'spring'
@@ -36,6 +45,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'pry'
+  #windows specific
+  gem 'tzinfo-data', platforms: [:mingw, :mswin]
 end
 
 group :test do
