@@ -20,8 +20,12 @@ gem 'therubyracer', platforms: :ruby
 gem 'travis'
 gem 'ffaker'
 gem 'konf'
-gem 'heroku'
 
+# Tools to test code
+gem 'traceroute'
+gem 'brakeman', :require => false
+gem 'rubocop', require: false
+gem 'excellent'
 
 group :development do
   gem 'spring'
@@ -38,4 +42,4 @@ group :test do
   gem 'database_cleaner'
 end
 
-ruby '2.1.5'
+ruby '2.2.1'
