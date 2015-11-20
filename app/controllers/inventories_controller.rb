@@ -5,11 +5,21 @@ class InventoriesController < ApplicationController
 
   def index
     @inventories = Inventory.all
-    respond_with(@inventories)
+    respond_to do |format|
+      format.html
+      format.pdf do 
+        generate_pdf("Inventory")
+      end
+    end
   end
 
   def show
-    respond_with(@inventory)
+    respond_to do |format|
+      format.html
+      format.pdf do 
+        generate_pdf("Inventory")
+      end
+    end
   end
 
   def new

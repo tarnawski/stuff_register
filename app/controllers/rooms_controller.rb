@@ -18,7 +18,12 @@ class RoomsController < ApplicationController
 
   def show
     @stuffs = Stuff.where(room_id: params[:id])
-    respond_with(@room)
+    respond_to do |format|
+      format.html
+      format.pdf do 
+        generate_pdf(@room.name)
+      end
+    end
   end
 
   def new

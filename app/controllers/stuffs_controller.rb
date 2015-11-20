@@ -13,11 +13,21 @@ class StuffsController < ApplicationController
 
   def index
     @stuffs = Stuff.all
-    respond_with(@stuffs)
+    respond_to do |format|
+      format.html
+      format.pdf do 
+        generate_pdf("Listing stuffs")
+      end
+    end
   end
 
   def show
-    respond_with(@stuff)
+    respond_to do |format|
+      format.html
+      format.pdf do 
+        generate_pdf(@stuff.name)
+      end
+    end
   end
 
   def new

@@ -266,6 +266,8 @@ GEM
     warden (1.2.3)
       rack (>= 1.0)
     websocket (1.2.2)
+    wicked_pdf (1.0.1)
+    wkhtmltopdf-binary (0.9.9.3)
 
 PLATFORMS
   ruby
@@ -300,7 +302,7 @@ DEPENDENCIES
   therubyracer
   traceroute
   travis
+  tzinfo-data
   uglifier
-
-BUNDLED WITH
-   1.10.6
+  wicked_pdf
+  wkhtmltopdf-binary

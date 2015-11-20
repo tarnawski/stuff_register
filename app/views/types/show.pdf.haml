@@ -1,0 +1,23 @@
+
+%h1 
+  Listing stuffs in type 
+  = @type.name
+
+%br
+%table.table
+  %tr
+    %th Name
+    %th Description
+    %th Price
+    %th Class
+    %th User
+    %th Funding source
+
+  - @stuffs.each do |stuff|
+    %tr
+      %td= stuff.name
+      %td= stuff.description
+      %td= stuff.price
+      %td= Room.find(stuff.room_id).name
+      %td= stuff.user_id
+      %td= stuff.funding_id

@@ -18,7 +18,12 @@ class FundingsController < ApplicationController
 
   def show
     @stuffs = Stuff.where(funding_id: params[:id])
-    respond_with(@funding)
+    respond_to do |format|
+      format.html
+      format.pdf do 
+        generate_pdf(@funding.name)
+      end
+    end
   end
 
   def new

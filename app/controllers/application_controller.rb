@@ -8,6 +8,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  def generate_pdf(filename)
+  	render pdf: filename,
+           layout: 'layouts/application.pdf.haml',
+           show_as_html: params[:debug].present?
+  end
+
     protected
         def configure_permitted_parameters
             devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:firstname, :lastname, :email, :password, :password_confirmation) }

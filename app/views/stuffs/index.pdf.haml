@@ -1,10 +1,6 @@
-%p#notice= notice
+%h1 Listing stuffs
 
-%p
-%h1 
-  Listing stuffs funding by 
-  = @funding.name
-
+%br
 %table.table
   %tr
     %th Name
@@ -14,9 +10,6 @@
     %th Class
     %th User
     %th Funding source
-    %th
-    %th
-    %th
 
   - @stuffs.each do |stuff|
     %tr
@@ -27,9 +20,3 @@
       %td= stuff.room_id
       %td= stuff.user_id
       %td= stuff.funding_id
-
-%br
-
-= link_to 'Back', fundings_path
-%br
-= link_to 'Download PDF', {:format => :pdf}
