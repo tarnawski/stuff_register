@@ -22,19 +22,25 @@ gem 'ffaker'
 gem 'konf'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Tools to test code
 gem 'traceroute'
 gem 'brakeman', :require => false
 gem 'rubocop', require: false
 gem 'excellent'
 =======
+=======
+>>>>>>> origin/Arkadiusz
 gem 'pdfkit'
 #gem 'wkhtmltopdf'
 gem 'wkhtmltopdf-binary', '0.9.9'
 #gem 'wkhtmltopdf-heroku'
 
 
+<<<<<<< HEAD
 >>>>>>> add pdfkit
+=======
+>>>>>>> origin/Arkadiusz
 
 group :development do
   gem 'spring'
