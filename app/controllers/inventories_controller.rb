@@ -1,18 +1,26 @@
 class InventoriesController < ApplicationController
   before_action :set_inventory, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :show, :new, :edit, :update, :destroy, :create]
 
   respond_to :html
 
   def index
-    @inventories = Inventory.all
+    @stuffs = Stuff.all.where({ user_id: current_user.id})
+    @inventories = Set.new
+    @stuffs.each do |stuff|
+      @inventories << Inventory.find(stuff.inventory_id)
+    end
     respond_with(@inventories)
   end
 
   def show
+    @stuff = Stuff.find(@inventory.stuff_id)
+    @owner = User.find(@stuff.user_id)
     respond_with(@inventory)
   end
 
   def new
+    @stuffs = Stuff.all.where({ user_id: current_user.id})
     @inventory = Inventory.new
     respond_with(@inventory)
   end

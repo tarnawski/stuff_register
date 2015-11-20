@@ -1,6 +1,14 @@
 %h1 Editing inventory
 
-= render 'form'
+= simple_form_for(@inventory) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input_field :in_stock, as: :boolean, checked_value: true, unchecked_value: false, :inline_label => "Do you have it in stock?"
+    = f.input :comment
+
+  .form-actions
+    = f.button :submit
 
 = link_to 'Show', @inventory
 \|
