@@ -16,4 +16,6 @@ root 'types#index'
   resources :stuffs
 
   devise_for :users
+  post 'raport' => 'stuffs#raport'
+  get 'raport' => 'stuffs#raport'
 end

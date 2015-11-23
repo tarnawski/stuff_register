@@ -11,6 +11,30 @@ class StuffsController < ApplicationController
 
   respond_to :html
 
+  def raport
+
+sql = "select s.name, s.price from inventories i 
+inner join stuffs s ON s.id = i.stuff_id 
+inner join rooms r ON r.id = s.room_id 
+where 
+i.in_stock = true" 
+
+  if params[:list][:user_id].present?
+  sql = sql + " AND s.user_id = " + params[:list][:user_id]
+  end
+  if params[:list][:room_id].present?
+  sql = sql + " AND s.room_id = " + params[:list][:room_id]
+  end
+  if params[:list][:funding_id].present?
+  sql = sql + " AND s.funding_id = " + params[:list][:funding_id]
+  end
+
+   
+ @stuffs = Stuff.connection.exec_query(sql)
+
+    respond_with(@stuffs)
+  end
+
   def index
     @stuffs = Stuff.all
     respond_with(@stuffs)
@@ -52,4 +76,5 @@ class StuffsController < ApplicationController
     def stuff_params
       params.require(:stuff).permit(:name, :description, :price, :in_stock, :type_id, :room_id, :user_id, :funding_id)
     end
+
 end
