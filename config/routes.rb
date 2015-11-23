@@ -21,4 +21,5 @@ root 'types#index'
 
   post 'catalog' => 'stuffs#catalog'
   get 'catalog' => 'stuffs#catalog'
+
 end

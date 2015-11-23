@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 %h1 Generowanie raportu:
 
 = form_for :list, :url => {:controller => 'stuffs', :action => 'raport'} do |f|
@@ -7,6 +8,24 @@
   .form-group
     = f.label :end_date
     = select_date Date.today, prefix: :end_date
+=======
+%h1 Wybierz szczegóły raportu
+
+= form_for :list, :url => {:controller => 'stuffs', :action => 'raport'} do |f|
+  .form-group 
+    = f.label :type_id
+    = f.collection_select :type_id, Type.all, :id, :name, prompt: true
+  .form-group
+    = f.label :room_id
+    = f.collection_select :room_id, Room.all, :id, :name, prompt: true
+  .form-group
+    = f.label :funding_id
+    = f.collection_select :funding_id, Funding.all, :id, :name, prompt: true
+  .form-group
+    = f.label :user_id
+    = f.collection_select :user_id, User.all, :id, :lastname, prompt: true
+
+>>>>>>> Add basic form
   .form-actions
     = f.button :submit
 
@@ -14,6 +33,7 @@
 %br
 %br
 
+<<<<<<< HEAD
 %table.table
   %tr
     %th ID
@@ -38,6 +58,20 @@
 
 %br
 
+=======
+
+
+%table.table
+  %tr
+    - @stuffs.columns.each do |columns|
+      %th
+        = columns
+    - @stuffs.rows.each do |rows|
+      %tr
+        - rows.each do |tom|
+          %td
+            = tom
+>>>>>>> Add basic form
 
 %br
 

@@ -42,7 +42,6 @@ class StuffsController < ApplicationController
    end  
   end 
 
-
   def index
     @stuffs = Stuff.all
     respond_with(@stuffs)
