@@ -1,43 +1,27 @@
 class InventoriesController < ApplicationController
-  before_action :set_inventory, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:index, :show, :new, :edit, :update, :destroy, :create]
+  before_action :get_informations, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create]
 
   respond_to :html
 
-  def index
-    @stuffs = Stuff.all.where({ user_id: current_user.id})
-    @inventories = Set.new
-    @stuffs.each do |stuff|
-      @inventories << Inventory.find(stuff.inventory_id)
-    end
-    respond_with(@inventories)
-  end
-
-  def show
-    @stuff = Stuff.find(@inventory.stuff_id)
-    @owner = User.find(@stuff.user_id)
-    respond_with(@inventory)
-  end
-
   def new
-    @stuffs = Stuff.all.where({ user_id: current_user.id})
     @inventory = Inventory.new
+    #need to add pdf generation
     respond_with(@inventory)
-  end
-
-  def edit
   end
 
   def create
     @inventory = Inventory.new(inventory_params)
-    @inventory.save
-    respond_with(@inventory)
-  end
 
-  def update
-    @inventory.update(inventory_params)
-    respond_with(@inventory)
+    respond_to do |format|
+    if @inventory.save
+      format.html { redirect_to new_inventory_path, notice: "Inventory saved." }
+    else
+      format.html { render action: "new" }
+    end 
+
   end
+end
 
   def destroy
     @inventory.destroy
@@ -45,8 +29,14 @@ class InventoriesController < ApplicationController
   end
 
   private
-    def set_inventory
-      @inventory = Inventory.find(params[:id])
+    def get_informations
+      @stuffs = Stuff.where({ user_id: current_user.id}) #
+      @inventories = Array.new
+      @stuffs.each do |stuff|
+        Inventory.where({ stuff_id: stuff.id}).each do |inv|
+          @inventories << inv
+        end
+      end
     end
 
     def inventory_params

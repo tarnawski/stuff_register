@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
 
-  resources :inventories
+  resources :inventories, only: [:new, :create]
 
 root 'types#index'
 
