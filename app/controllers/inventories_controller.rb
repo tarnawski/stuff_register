@@ -14,18 +14,12 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.new(inventory_params)
 
     respond_to do |format|
-    if @inventory.save
-      format.html { redirect_to new_inventory_path, notice: "Inventory saved." }
-    else
-      format.html { render action: "new" }
-    end 
-
-  end
-end
-
-  def destroy
-    @inventory.destroy
-    respond_with(@inventory)
+      if @inventory.save
+        format.html { redirect_to new_inventory_path, notice: "Inventory saved." }
+      else
+        format.html { render action: "new" }
+      end 
+    end
   end
 
   private
