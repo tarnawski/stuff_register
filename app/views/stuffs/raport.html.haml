@@ -1,19 +1,12 @@
-%h1 Wybierz szczegóły raportu
+%h1 Generowanie raportu:
 
 = form_for :list, :url => {:controller => 'stuffs', :action => 'raport'} do |f|
-  .form-group 
-    = f.label :type_id
-    = f.collection_select :type_id, Type.all, :id, :name, prompt: true
   .form-group
-    = f.label :room_id
-    = f.collection_select :room_id, Room.all, :id, :name, prompt: true
+    = f.label :start_date
+    = select_date Date.today, prefix: :start_date
   .form-group
-    = f.label :funding_id
-    = f.collection_select :funding_id, Funding.all, :id, :name, prompt: true
-  .form-group
-    = f.label :user_id
-    = f.collection_select :user_id, User.all, :id, :lastname, prompt: true
-
+    = f.label :end_date
+    = select_date Date.today, prefix: :end_date
   .form-actions
     = f.button :submit
 
@@ -21,18 +14,30 @@
 %br
 %br
 
-
-
 %table.table
   %tr
-    - @stuffs.columns.each do |columns|
-      %th
-        = columns
-    - @stuffs.rows.each do |rows|
+    %th ID
+    %th Name
+    %th Description
+    %th Price
+    %th In stock
+    %th Comment
+
+
+
+  -if @inventories
+    - @inventories.each do |inventory|
       %tr
-        - rows.each do |tom|
-          %td
-            = tom
+        %td= Stuff.find(inventory.stuff_id).id
+        %td= Stuff.find(inventory.stuff_id).name
+        %td= Stuff.find(inventory.stuff_id).description
+        %td= Stuff.find(inventory.stuff_id).price
+        %td= inventory.in_stock
+        %td= inventory.comment
+   
+
+%br
+
 
 %br
 

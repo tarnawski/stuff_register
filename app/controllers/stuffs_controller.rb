@@ -11,29 +11,37 @@ class StuffsController < ApplicationController
 
   respond_to :html
 
-  def raport
+  def catalog
 
-sql = "select s.name, s.price from inventories i 
-inner join stuffs s ON s.id = i.stuff_id 
-inner join rooms r ON r.id = s.room_id 
-where 
-i.in_stock = true" 
+    stuffs = Stuff.all;
 
-  if params[:list][:user_id].present?
-  sql = sql + " AND s.user_id = " + params[:list][:user_id]
-  end
-  if params[:list][:room_id].present?
-  sql = sql + " AND s.room_id = " + params[:list][:room_id]
-  end
-  if params[:list][:funding_id].present?
-  sql = sql + " AND s.funding_id = " + params[:list][:funding_id]
-  end
-
+    if request.post?
+      if params[:list][:user_id].present?
+        stuffs = stuffs & Stuff.where(user_id: params[:list][:user_id])
+      end
+      if params[:list][:room_id].present?
+        stuffs = stuffs & Stuff.where(user_id: params[:list][:room_id])
+      end
+      if params[:list][:type_id].present?
+       stuffs = stuffs & Stuff.where(type_id: params[:list][:type_id])
+      end
+      if params[:list][:funding_id].present?
+        stuffs = stuffs & Stuff.where(funding_id: params[:list][:funding_id])
+      end
+     end
    
- @stuffs = Stuff.connection.exec_query(sql)
-
-    respond_with(@stuffs)
+     @stuffs = stuffs
+     respond_with(@stuffs)
   end
+
+  def raport
+   if request.post?
+    starts = Time.local(params[:start_date][:year], params[:start_date][:month], params[:start_date][:day])
+    ends = Time.local(params[:end_date][:year], params[:end_date][:month], params[:end_date][:day])
+    @inventories =  Inventory.where(created_at: (starts .. ends))
+   end  
+  end 
+
 
   def index
     @stuffs = Stuff.all
@@ -74,7 +82,8 @@ i.in_stock = true"
     end
 
     def stuff_params
-      params.require(:stuff).permit(:name, :description, :price, :in_stock, :type_id, :room_id, :user_id, :funding_id)
+      params.require(:stuff).permit(:name, :description, :price, :in_stock, :type_id, :room_id, :user_id, :funding_id) 
+
     end
 
 end
