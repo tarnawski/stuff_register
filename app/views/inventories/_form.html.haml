@@ -1,9 +1,12 @@
 = simple_form_for(@inventory) do |f|
   = f.error_notification
+  - if notice
+    %div.alert.alert-info
+      %p#notice=notice
 
   .form-inputs
-    = f.input :stuff_id
-    = f.input :in_stock
+    = f.input :stuff_id, collection: @stuffs
+    = f.input_field :in_stock, as: :boolean, checked_value: true, unchecked_value: false, :inline_label => "Do you have it in stock?"
     = f.input :comment
 
   .form-actions

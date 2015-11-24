@@ -1,5 +1,31 @@
+%h1 Listing inventories
+
+-if !@inventories.empty?
+  %table.table
+    %tr
+      %th Stuff Name
+      %th Price
+      %th Description
+      %th In stock
+      %th Comment
+      %th Date
+
+    - @inventories.each do |inventory|
+    - stuff = Stuff.find(inventory.stuff_id)
+      %tr
+        %td= stuff.name
+        %td= stuff.price
+        %td= stuff.description
+        %td= inventory.in_stock
+        %td= inventory.comment
+        %td= inventory.created_at
+       
+%br
+
 %h1 New inventory
 
 = render 'form'
 
-= link_to 'Back', inventories_path
+%br
+%br
+%br
