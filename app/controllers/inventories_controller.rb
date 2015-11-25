@@ -1,54 +1,41 @@
 class InventoriesController < ApplicationController
-  before_action :set_inventory, only: [:show, :edit, :update, :destroy]
+  before_action :get_informations, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create]
 
   respond_to :html
 
-  def index
-    @inventories = Inventory.all
-    respond_to do |format|
-      format.html
-      format.pdf do 
-        generate_pdf("Inventory")
-      end
-    end
-  end
-
-  def show
-    respond_to do |format|
-      format.html
-      format.pdf do 
-        generate_pdf("Inventory")
-      end
-    end
-  end
-
   def new
     @inventory = Inventory.new
-    respond_with(@inventory)
-  end
 
-  def edit
+    respond_to do |format|
+      format.html
+      format.pdf do 
+        generate_pdf("Inventaryzacja")
+      end
+    end
   end
 
   def create
     @inventory = Inventory.new(inventory_params)
-    @inventory.save
-    respond_with(@inventory)
-  end
 
-  def update
-    @inventory.update(inventory_params)
-    respond_with(@inventory)
-  end
-
-  def destroy
-    @inventory.destroy
-    respond_with(@inventory)
+    respond_to do |format|
+      if @inventory.save
+        format.html { redirect_to new_inventory_path, notice: "Inventory saved." }
+      else
+        format.html { render action: "new" }
+      end 
+    end
   end
 
   private
-    def set_inventory
-      @inventory = Inventory.find(params[:id])
+    def get_informations
+      @stuffs = Stuff.where({ user_id: current_user.id}) #
+      @inventories = Array.new
+      @stuffs.each do |stuff|
+        Inventory.where({ stuff_id: stuff.id}).each do |inv|
+          @inventories << inv
+        end
+      end
     end
 
     def inventory_params

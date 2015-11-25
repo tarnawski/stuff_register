@@ -11,6 +11,54 @@ class StuffsController < ApplicationController
 
   respond_to :html
 
+  def catalog
+
+    stuffs = Stuff.all;
+
+    if request.post?
+      if params[:list][:user_id].present?
+        stuffs = stuffs & Stuff.where(user_id: params[:list][:user_id])
+      end
+      if params[:list][:room_id].present?
+        stuffs = stuffs & Stuff.where(user_id: params[:list][:room_id])
+      end
+      if params[:list][:type_id].present?
+       stuffs = stuffs & Stuff.where(type_id: params[:list][:type_id])
+      end
+      if params[:list][:funding_id].present?
+        stuffs = stuffs & Stuff.where(funding_id: params[:list][:funding_id])
+      end
+     end
+   
+     @stuffs = stuffs
+
+     respond_to do |format|
+      format.html
+      format.pdf do 
+        generate_pdf("Catalog")
+      end
+     end
+  end
+
+  def raport
+   if request.post?
+    @starts = Time.local(params[:start_date][:year], params[:start_date][:month], params[:start_date][:day])
+    @ends = Time.local(params[:end_date][:year], params[:end_date][:month], params[:end_date][:day])
+    @inventories =  Inventory.where(created_at: (@starts .. @ends))
+   end 
+  end 
+
+  def pdfraport
+   @inventories =  Inventory.where(created_at: (params[:starts] .. params[:ends]))
+
+   respond_to do |format|
+      format.html
+      format.pdf do 
+        generate_pdf("Raport")
+      end
+     end 
+  end 
+
   def index
     @stuffs = Stuff.all
     respond_to do |format|
@@ -60,6 +108,8 @@ class StuffsController < ApplicationController
     end
 
     def stuff_params
-      params.require(:stuff).permit(:name, :description, :price, :in_stock, :type_id, :room_id, :user_id, :funding_id)
+      params.require(:stuff).permit(:name, :description, :price, :in_stock, :type_id, :room_id, :user_id, :funding_id) 
+
     end
+
 end

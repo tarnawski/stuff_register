@@ -1,0 +1,21 @@
+%h1 Raporty
+%br
+
+%table.table
+  %tr
+    %th ID
+    %th Name
+    %th Description
+    %th Price
+    %th In stock
+    %th Comment
+
+  -if @inventories
+    - @inventories.each do |inventory|
+      %tr
+        %td= Stuff.find(inventory.stuff_id).id
+        %td= Stuff.find(inventory.stuff_id).name
+        %td= Stuff.find(inventory.stuff_id).description
+        %td= Stuff.find(inventory.stuff_id).price
+        %td= inventory.in_stock
+        %td= inventory.comment
