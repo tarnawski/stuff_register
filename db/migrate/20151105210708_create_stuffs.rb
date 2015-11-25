@@ -6,8 +6,9 @@ class CreateStuffs < ActiveRecord::Migration
       t.float :price
       t.boolean :in_stock
       t.integer :type_id
-      t.integer :class_id
+      t.integer :room_id
       t.integer :user_id
+      t.integer :funding_id
 
       t.timestamps
     end
