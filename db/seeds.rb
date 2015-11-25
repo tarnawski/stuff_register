@@ -1,67 +1,93 @@
-#Admin
-user = User.new
-user.email = 'admin@example.com'
-user.encrypted_password = 'xxxxxxx'
-user.password = 'password'
-user.password_confirmation = 'password'
-user.current_sign_in_at = '2015-02-27 20:29:27.899831'
-user.last_sign_in_at = '2015-02-26 20:29:27.899831'
-user.current_sign_in_ip = '192.168.0.0'
-user.last_sign_in_ip = '192.168.0.0'
-user.created_at = '2015-02-26 20:29:27.899831'
-user.updated_at = '2015-02-26 20:29:27.899831'
-user.firstname = 'Tomasz'
-user.lastname = 'Adamczyk'
-user.admin = 'TRUE'
-user.save!
+#Admin - ok
+User.create(
+	firstname: "Tomasz",
+	lastname: "Adamczyk",
+	email: "admin@example.com",
+	password: "password",
+	password_confirmation: "password",
+	admin: 'TRUE')
 
-#User
-user = User.new
-user.email = 'jolka@example.com'
-user.encrypted_password = 'xxxxxx'
-user.password = 'password'
-user.password_confirmation = 'password'
-user.current_sign_in_at = '2015-02-27 20:29:27.899831'
-user.last_sign_in_at = '2015-02-26 20:29:27.899831'
-user.current_sign_in_ip = '192.168.0.0'
-user.last_sign_in_ip = '192.168.0.0'
-user.created_at = '2015-02-26 20:29:27.899831'
-user.updated_at = '2015-02-26 20:29:27.899831'
-user.firstname = 'Jolanta'
-user.lastname = 'Nowakowska'
-user.admin = 'FALSE'
-user.save!
+#User - ok
+User.create(
+	firstname: "Jolanta",
+	lastname: "Nowakowska",
+	email: "jolka@example.com",
+	password: "password",
+	password_confirmation: "password",
+	admin: 'FALSE')
 
-rooms = ["B102", "A2", "C65", "A145", "D103", "B182"]
-rooms.each do |name|
-  Room.create(name: name)
+#more users - ok
+5.times do |n|
+	u = User.new
+	u.firstname = Faker::Name.first_name
+	u.lastname = Faker::Name.last_name
+	u.email = Faker::Internet.email
+	pass = Faker::Internet.password(8)
+	u.password = pass
+	u.password_confirmation = pass
+	u.admin = 'FALSE'
+	u.save
 end
 
+#rooms - ok
+5.times do |n|
+	number = Faker::Number.number(3)
+	Room.create(name: "A" + number)
+end
+5.times do |n|
+	number = Faker::Number.number(3)
+	Room.create(name: "B" + number)
+end
+5.times do |n|
+	number = Faker::Number.number(3)
+	Room.create(name: "C" + number)
+end
+5.times do |n|
+	number = Faker::Number.number(3)
+	Room.create(name: "D" + number)
+end
+
+#types - ok
 types = ["Akcesoria", "Komputery stacjonarne", "Drukarki", "Laptopy", "Rzutniki", "Stoliki", "Krzesła"]
 types.each do |name|
   Type.create(name: name)
 end
 
-fundings = ["Unia Europejska", "Państwo", "Dotacje na rozwój"]
+#fundings - ok
+fundings = ["Unia Europejska", "Państwo", "Dotacja na rozwój", "Prywatny Inwestor"]
 fundings.each do |name|
   Funding.create(name: name)
 end
 
-inventories = [
-  [ 1, TRUE, "Urządzenie posiada rysy"],
-  [ 2, TRUE, "Urządzenie jest niesprawne"]
-]
-inventories.each do |stuff_id, in_stock, comment|
-  Inventory.create(stuff_id: stuff_id, in_stock: in_stock, comment: comment)
+#stuffs
+30.times do |n|
+	s = Stuff.new
+	s.name = Faker::Commerce.product_name
+	s.description = Faker::Hacker.say_something_smart
+	s.price = Faker::Commerce.price
+	s.type_id = rand(1..7)
+	s.room_id = rand(1..20)
+	s.user_id = rand(1..7)
+	s.funding_id = rand(1..4)
+	s.inventory_id = n-1
+	s.save
 end
 
-stuffs = [
-  [ "Komputer stacjonarny", "Komputer stacjonarny numer seryjny:JH7GFH", 3000.25, 2, 1, 2, 1, 1],
-  [ "Laptop", "Lenovo numer seryjny:JH7GFH", 2500, 3, 1, 2, 1, 1]
-]
-# TO_DO Dopisać więcej fixtur, aby to zrobić należy dodać do talicy staffs więcej elementów.
+#one stuff at least one inventory
+30.times do |n|
+	i = Inventory.new
+	i.stuff_id = n-1
+	i.in_stock = 'TRUE'
+	i.comment = Faker::Hacker.say_something_smart
+	i.save
+end
 
-stuffs.each do |name, description, price, type_id, room_id, user_id, funding_id, inventory_id|
-  Stuff.create( name: name, description: description, price: price, type_id: type_id, room_id: room_id, user_id: user_id, funding_id: funding_id, inventory_id: inventory_id)
+#and more inventories
+rand(20..40).times do |n|
+	i = Inventory.new
+	i.stuff_id = rand(0..29)
+	i.in_stock = 'TRUE'
+	i.comment = Faker::Hacker.say_something_smart
+	i.save
 end
 

@@ -17,7 +17,8 @@
       %td= stuff.name
       %td= stuff.description
       %td= stuff.price
-      %td= stuff.type_id
-      %td= stuff.room_id
-      %td= stuff.user_id
-      %td= stuff.funding_id
+      %td= Type.find(stuff.type_id).name
+      %td= Room.find(stuff.room_id).name
+      - user = User.find(stuff.user_id)
+      %td= user.firstname + " " + user.lastname
+      %td= Funding.find(stuff.funding_id).name

@@ -18,10 +18,11 @@
       %td= stuff.name
       %td= stuff.description
       %td= stuff.price
-      %td= stuff.type_id
-      %td= stuff.room_id
-      %td= stuff.user_id
-      %td= stuff.funding_id
+      %td= Type.find(stuff.type_id).name
+      %td= Room.find(stuff.room_id).name
+      - user = User.find(stuff.user_id)
+      %td= user.firstname + " " + user.lastname
+      %td= Funding.find(stuff.funding_id).name
       %td= link_to '', stuff, class: %w(glyphicon glyphicon-search)
       %td= link_to '', edit_stuff_path(stuff), class: %w(glyphicon glyphicon-pencil)
       %td= link_to '', stuff, class: %w(glyphicon glyphicon-remove), :method => :delete,  :data => { :confirm => 'Are you sure?' }
@@ -31,3 +32,5 @@
 = link_to ' Nowy Przedmiot', new_stuff_path, class: %w(glyphicon glyphicon-plus)
 %br
 = link_to ' Pobierz PDF', {:format => :pdf}, class: %w(glyphicon glyphicon-download-alt)
+%br
+%br

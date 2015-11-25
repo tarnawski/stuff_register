@@ -29,6 +29,7 @@ gem 'excellent'
 
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
+gem 'faker'
 
 group :development do
   gem 'spring'
