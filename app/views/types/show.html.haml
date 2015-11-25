@@ -3,17 +3,17 @@
 %p
 
 %h1 
-  Listing stuffs in type 
+  Lista przedmiotów typu
   = @type.name
 
 %table.table
   %tr
-    %th Name
-    %th Description
-    %th Price
-    %th Class
-    %th User
-    %th Funding source
+    %th Nazwa
+    %th Opis
+    %th Cena
+    %th Sala
+    %th Właściciel
+    %th Źródło finansowania
     %th
     %th
     %th
@@ -32,8 +32,8 @@
 
 %br
 
-= link_to ' New Stuff', new_type_stuff_path(:type_id => @type.id), class: %w(glyphicon glyphicon-plus)
-= link_to ' Back', types_path, class: %w(glyphicon glyphicon-chevron-left)
+= link_to ' Nowy Przedmiot', new_type_stuff_path(:type_id => @type.id), class: %w(glyphicon glyphicon-plus)
+= link_to ' Powrót', types_path, class: %w(glyphicon glyphicon-chevron-left)
 %br
-= link_to ' Download PDF', {:format => :pdf}, class: %w(glyphicon glyphicon-download-alt)
+= link_to ' Pobierz PDF', {:format => :pdf}, class: %w(glyphicon glyphicon-download-alt)
 

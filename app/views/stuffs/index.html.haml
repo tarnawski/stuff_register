@@ -1,14 +1,14 @@
-%h1 Listing stuffs
+%h1 Lista przedmiotów
 
 %table.table
   %tr
-    %th Name
-    %th Description
-    %th Price
-    %th Type
-    %th Class
-    %th User
-    %th Funding source
+    %th Nazwa
+    %th Opis
+    %th Cena
+    %th Typ
+    %th Sala
+    %th Właściciel
+    %th Źródło finansowania
     %th
     %th
     %th
@@ -28,6 +28,6 @@
 
 %br
 
-= link_to ' New Stuff', new_stuff_path, class: %w(glyphicon glyphicon-plus)
+= link_to ' Nowy Przedmiot', new_stuff_path, class: %w(glyphicon glyphicon-plus)
 %br
-= link_to ' Download PDF', {:format => :pdf}, class: %w(glyphicon glyphicon-download-alt)
+= link_to ' Pobierz PDF', {:format => :pdf}, class: %w(glyphicon glyphicon-download-alt)

@@ -1,21 +1,16 @@
-
 %h1 
-  Listing stuffs in class 
+  Lista przedmiotów w pokoju  
   = @room.name
 
-%br
 %table.table
   %tr
-    %th Name
-    %th Description
-    %th Price
-    %th Type
-    %th Class
-    %th User
-    %th Funding source
-    %th
-    %th
-    %th
+    %th Nazwa
+    %th Opis
+    %th Cena
+    %th Typ
+    %th Sala
+    %th Właściciel
+    %th Źródło finansowania
 
   - @stuffs.each do |stuff|
     %tr

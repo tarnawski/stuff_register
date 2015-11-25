@@ -22,13 +22,13 @@
 
 %table.table
   %tr
-    %th Name
-    %th Description
-    %th Price
-    %th Type
-    %th Class
-    %th User
-    %th Funding source
+    %th Nazwa
+    %th Opis
+    %th Cena
+    %th Typ
+    %th Sala
+    %th Właściciel
+    %th Źródło finansowania
 
   
   - @stuffs.each do |stuff|
@@ -43,4 +43,4 @@
  
 
 %br
-= link_to ' Download PDF', {:format => :pdf}, class: %w(glyphicon glyphicon-download-alt)
+= link_to ' Pobierz PDF', {:format => :pdf}, class: %w(glyphicon glyphicon-download-alt)

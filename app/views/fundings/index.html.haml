@@ -1,8 +1,8 @@
-%h1 Listing fundings
+%h1 Lista źródeł finansowania
 
 %table.table
   %tr
-    %th Name
+    %th Nazwa
     %th
     %th
     %th
@@ -12,8 +12,8 @@
       %td= funding.name
       %td= link_to '', funding, class: %w(glyphicon glyphicon-search)
       %td= link_to '', edit_funding_path(funding), class: %w(glyphicon glyphicon-pencil)
-      %td= link_to '', funding, class: %w(glyphicon glyphicon-remove), :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to '', funding, class: %w(glyphicon glyphicon-remove), :method => :delete, :data => { :confirm => 'Czy napewno chcesz usunąć ?' }
 
 %br
 
-= link_to ' New Funding', new_funding_path, class: %w(glyphicon glyphicon-plus)
+= link_to ' Nowe źródło finansowania.', new_funding_path, class: %w(glyphicon glyphicon-plus)

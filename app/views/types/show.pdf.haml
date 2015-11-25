@@ -1,17 +1,15 @@
-
 %h1 
-  Listing stuffs in type 
+  Lista przedmiotów typu
   = @type.name
 
-%br
 %table.table
   %tr
-    %th Name
-    %th Description
-    %th Price
-    %th Class
-    %th User
-    %th Funding source
+    %th Nazwa
+    %th Opis
+    %th Cena
+    %th Sala
+    %th Właściciel
+    %th Źródło finansowania
 
   - @stuffs.each do |stuff|
     %tr

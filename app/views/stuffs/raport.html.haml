@@ -19,11 +19,11 @@
 %table.table
   %tr
     %th ID
-    %th Name
-    %th Description
-    %th Price
-    %th In stock
-    %th Comment
+    %th Nazwa
+    %th Opis
+    %th Cena
+    %th Na stanie
+    %th Komentarz
 
 
 
@@ -38,4 +38,4 @@
         %td= inventory.comment
    
 %br
-= link_to ' Download PDF', pdfraport_path(:starts => @starts, :ends => @ends,:format => :pdf), class: %w(glyphicon glyphicon-download-alt)
+= link_to ' Pobierz PDF', pdfraport_path(:starts => @starts, :ends => @ends,:format => :pdf), class: %w(glyphicon glyphicon-download-alt)

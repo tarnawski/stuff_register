@@ -1,14 +1,14 @@
-%h1 Listing inventories
+%h1 Lista Inwentaryzacji
 
 -if !@inventories.empty?
   %table.table
     %tr
-      %th Stuff Name
-      %th Price
-      %th Description
-      %th In stock
-      %th Comment
-      %th Date
+      %th Nazwa Przedmiotu
+      %th Cena
+      %th Opis
+      %th Na Stanie
+      %th Komentarz
+      %th Data
 
     - @inventories.each do |inventory|
     - stuff = Stuff.find(inventory.stuff_id)
