@@ -38,4 +38,4 @@
         %td= inventory.comment
    
 %br
-= link_to 'Download PDF', pdfraport_path(:starts => @starts, :ends => @ends,:format => :pdf)
+= link_to ' Download PDF', pdfraport_path(:starts => @starts, :ends => @ends,:format => :pdf), class: %w(glyphicon glyphicon-download-alt)

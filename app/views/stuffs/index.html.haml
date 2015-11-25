@@ -22,12 +22,12 @@
       %td= stuff.room_id
       %td= stuff.user_id
       %td= stuff.funding_id
-      %td= link_to 'Show', stuff
-      %td= link_to 'Edit', edit_stuff_path(stuff)
-      %td= link_to 'Destroy', stuff, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to '', stuff, class: %w(glyphicon glyphicon-search)
+      %td= link_to '', edit_stuff_path(stuff), class: %w(glyphicon glyphicon-pencil)
+      %td= link_to '', stuff, class: %w(glyphicon glyphicon-remove), :method => :delete,  :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Stuff', new_stuff_path
+= link_to ' New Stuff', new_stuff_path, class: %w(glyphicon glyphicon-plus)
 %br
-= link_to 'Download PDF', {:format => :pdf}
+= link_to ' Download PDF', {:format => :pdf}, class: %w(glyphicon glyphicon-download-alt)

@@ -26,14 +26,14 @@
       %td= Room.find(stuff.room_id).name
       %td= stuff.user_id
       %td= stuff.funding_id
-      %td= link_to 'Show', type_stuff_path(@type.id, stuff)
-      %td= link_to 'Edit', edit_type_stuff_path(@type.id, stuff)
-      %td= link_to 'Destroy', type_stuff_path(@type.id, stuff), :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to '', type_stuff_path(@type.id, stuff), class: %w(glyphicon glyphicon-search)
+      %td= link_to '', edit_type_stuff_path(@type.id, stuff), class: %w(glyphicon glyphicon-pencil)
+      %td= link_to '', type_stuff_path(@type.id, stuff), class: %w(glyphicon glyphicon-remove), :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Stuff', new_type_stuff_path(:type_id => @type.id)
-= link_to 'Back', types_path
+= link_to ' New Stuff', new_type_stuff_path(:type_id => @type.id), class: %w(glyphicon glyphicon-plus)
+= link_to ' Back', types_path, class: %w(glyphicon glyphicon-chevron-left)
 %br
-= link_to 'Download PDF', {:format => :pdf}
+= link_to ' Download PDF', {:format => :pdf}, class: %w(glyphicon glyphicon-download-alt)
 
