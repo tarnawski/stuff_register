@@ -1,4 +1,4 @@
-#Admin - ok
+#Admin
 User.create(
 	firstname: "Tomasz",
 	lastname: "Adamczyk",
@@ -7,7 +7,7 @@ User.create(
 	password_confirmation: "password",
 	admin: 'TRUE')
 
-#User - ok
+#User
 User.create(
 	firstname: "Jolanta",
 	lastname: "Nowakowska",
@@ -16,7 +16,7 @@ User.create(
 	password_confirmation: "password",
 	admin: 'FALSE')
 
-#more users - ok
+#more users
 5.times do |n|
 	u = User.new
 	u.firstname = Faker::Name.first_name
@@ -29,7 +29,7 @@ User.create(
 	u.save
 end
 
-#rooms - ok
+#rooms
 5.times do |n|
 	number = Faker::Number.number(3)
 	Room.create(name: "A" + number)
@@ -47,23 +47,25 @@ end
 	Room.create(name: "D" + number)
 end
 
-#types - ok
+#types
 types = ["Akcesoria", "Komputery stacjonarne", "Drukarki", "Laptopy", "Rzutniki", "Stoliki", "Krzesła"]
 types.each do |name|
   Type.create(name: name)
 end
 
-#fundings - ok
+#fundings
 fundings = ["Unia Europejska", "Państwo", "Dotacja na rozwój", "Prywatny Inwestor"]
 fundings.each do |name|
   Funding.create(name: name)
 end
 
+descriptions = ["Posiada lekkie rysy." , "Niesprawny", "Posiada duże zarysowania", "Sprawny", "Posiada pękniętą obudowę", "Sprzęt niekompletny", "W Pełni sprawny"]
+
 #stuffs
 30.times do |n|
 	s = Stuff.new
 	s.name = Faker::Commerce.product_name
-	s.description = Faker::Hacker.say_something_smart
+	s.description = descriptions[rand(0..6)]
 	s.price = Faker::Commerce.price
 	s.type_id = rand(1..7)
 	s.room_id = rand(1..20)
