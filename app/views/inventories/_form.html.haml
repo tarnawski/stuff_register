@@ -1,10 +1,13 @@
 = simple_form_for(@inventory) do |f|
   = f.error_notification
+  - if notice
+    %div.alert.alert-info
+      %p#notice=notice
 
   .form-inputs
-    = f.input :stuff_id
-    = f.input :in_stock
-    = f.input :comment
+    = f.input :stuff_id, collection: @stuffs, label: "Wybierz Przedmiot"
+    = f.input_field :in_stock, as: :boolean, checked_value: true, unchecked_value: false, :inline_label => "Czy masz przedmiot na stanie?"
+    = f.input :comment, label: "Komentarz"
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, "Dodaj Inwentaryzacje"

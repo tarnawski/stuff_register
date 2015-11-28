@@ -1,8 +1,8 @@
-%h1 Listing rooms
+%h1 Lista Pokoi
 
 %table.table
   %tr
-    %th Name
+    %th Nazwa
     %th
     %th
     %th
@@ -10,10 +10,12 @@
   - @rooms.each do |room|
     %tr
       %td= room.name
-      %td= link_to 'Show', room
-      %td= link_to 'Edit', edit_room_path(room)
-      %td= link_to 'Destroy', room, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to '', room, class: %w(glyphicon glyphicon-search)
+      %td= link_to '', edit_room_path(room), class: %w(glyphicon glyphicon-pencil)
+      %td= link_to '', room, class: %w(glyphicon glyphicon-remove), :method => :delete, :data => { :confirm => 'Czy napewno chcesz usunać tą salę?' }
 
 %br
 
-= link_to 'New Room', new_room_path
+= link_to ' Nowa sala', new_room_path, class: %w(glyphicon glyphicon-plus)
+%br
+%br

@@ -1,11 +1,11 @@
 - if notice
   %div.alert.alert-info
     %p#notice= notice
-%h1 Listing types
+%h1 Lista Typów
 
 %table.table
   %tr
-    %th Name
+    %th Nazwa
     %th 
     %th
     %th
@@ -13,10 +13,12 @@
   - @types.each do |type|
     %tr
       %td= type.name
-      %td= link_to 'Show', type
-      %td= link_to 'Edit', edit_type_path(type)
-      %td= link_to 'Destroy', type, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to '', type, class: %w(glyphicon glyphicon-search)
+      %td= link_to '', edit_type_path(type), class: %w(glyphicon glyphicon-pencil)
+      %td= link_to '', type, class: %w(glyphicon glyphicon-remove), :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Type', new_type_path
+= link_to ' Nowy Typ', new_type_path, class: %w(glyphicon glyphicon-plus)
+%br
+%br

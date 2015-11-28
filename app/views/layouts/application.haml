@@ -22,13 +22,18 @@
             = link_to("Sale", rooms_path)
           %li
             = link_to("Źródła finansowania", fundings_path)
-                  
+          %li
+            = link_to("Inwentaryzacja", new_inventory_path)
+          %li
+            = link_to("Katalog", catalog_path)
+          %li
+            = link_to("Raporty", raport_path)                  
 
         %p.navbar-text.navbar-right
           %ul.nav.navbar-nav.navbar-right
             -if user_signed_in?
               %li
-                = link_to("Profil", edit_user_registration_path)
+                = link_to(current_user.email, edit_user_registration_path)
               %li
                 = link_to('Wyloguj', destroy_user_session_path,  :method=>'delete')
             -else

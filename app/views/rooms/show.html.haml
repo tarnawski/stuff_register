@@ -2,18 +2,18 @@
 
 %p
 %h1 
-  Listing stuffs in class 
+  Lista przedmiotów w pokoju  
   = @room.name
 
 %table.table
   %tr
-    %th Name
-    %th Description
-    %th Price
-    %th Type
-    %th Class
-    %th User
-    %th Funding source
+    %th Nazwa
+    %th Opis
+    %th Cena
+    %th Typ
+    %th Sala
+    %th Właściciel
+    %th Źródło finansowania
     %th
     %th
     %th
@@ -23,11 +23,16 @@
       %td= stuff.name
       %td= stuff.description
       %td= stuff.price
-      %td= stuff.type_id
-      %td= stuff.room_id
-      %td= stuff.user_id
-      %td= stuff.funding_id
+      %td= Type.find(stuff.type_id).name
+      %td= Room.find(stuff.room_id).name
+      - user = User.find(stuff.user_id)
+      %td= user.firstname + " " + user.lastname
+      %td= Funding.find(stuff.funding_id).name
 
 %br
 
-= link_to 'Back', rooms_path
+= link_to ' Powrót', rooms_path, class: %w(glyphicon glyphicon-chevron-left)
+%br
+= link_to ' Pobierz PDF', {:format => :pdf}, class: %w(glyphicon glyphicon-download-alt)
+%br
+%br

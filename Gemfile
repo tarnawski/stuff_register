@@ -20,8 +20,16 @@ gem 'therubyracer', platforms: :ruby
 gem 'travis'
 gem 'ffaker'
 gem 'konf'
-gem 'heroku'
 
+# Tools to test code
+gem 'traceroute'
+gem 'brakeman', :require => false
+gem 'rubocop', require: false
+gem 'excellent'
+
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+gem 'faker'
 
 group :development do
   gem 'spring'
@@ -32,6 +40,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'pry'
+  #windows specific
+  gem 'tzinfo-data', platforms: [:mingw, :mswin]
 end
 
 group :test do

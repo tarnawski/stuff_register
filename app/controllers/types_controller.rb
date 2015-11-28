@@ -18,7 +18,12 @@ class TypesController < ApplicationController
 
   def show
     @stuffs = Stuff.where(type_id: params[:id])
-    respond_with(@type)
+    respond_to do |format|
+      format.html
+      format.pdf do 
+        generate_pdf(@type.name)
+      end
+    end
   end
 
   def new

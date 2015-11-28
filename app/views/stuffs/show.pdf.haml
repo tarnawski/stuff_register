@@ -1,5 +1,3 @@
-%p#notice= notice
-
 %p
   %b Nazwa:
   = @stuff.name
@@ -21,6 +19,3 @@
 %p
   %b Źródło finansowania:
   = @stuff.funding_id
-
-%br
-= link_to ' Pobierz PDF', {:format => :pdf}, class: %w(glyphicon glyphicon-download-alt)

@@ -1,0 +1,49 @@
+%h1 Wybierz szczegóły raportu
+
+= form_for :list, :url => {:controller => 'stuffs', :action => 'catalog'} do |f|
+  .form-group 
+    = f.label :type_id
+    = f.collection_select :type_id, Type.all, :id, :name, prompt: true
+  .form-group
+    = f.label :room_id
+    = f.collection_select :room_id, Room.all, :id, :name, prompt: true
+  .form-group
+    = f.label :funding_id
+    = f.collection_select :funding_id, Funding.all, :id, :name, prompt: true
+  .form-group
+    = f.label :user_id
+    = f.collection_select :user_id, User.all, :id, :lastname, prompt: true
+  .form-actions
+    = f.button :submit
+
+%br
+%br
+%br
+
+%table.table
+  %tr
+    %th Nazwa
+    %th Opis
+    %th Cena
+    %th Typ
+    %th Sala
+    %th Właściciel
+    %th Źródło finansowania
+
+  
+  - @stuffs.each do |stuff|
+    %tr
+      %td= stuff.name
+      %td= stuff.description
+      %td= stuff.price
+      %td= Type.find(stuff.type_id).name
+      %td= Room.find(stuff.room_id).name
+      - user = User.find(stuff.user_id)
+      %td= user.firstname + " " + user.lastname
+      %td= Funding.find(stuff.funding_id).name
+ 
+
+%br
+= link_to ' Pobierz PDF', {:format => :pdf}, class: %w(glyphicon glyphicon-download-alt)
+%br
+%br

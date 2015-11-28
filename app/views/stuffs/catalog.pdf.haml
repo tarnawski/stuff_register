@@ -1,9 +1,4 @@
-%p#notice= notice
-
-%p
-%h1 
-  Lista przedmiotów ufundowana przez  
-  = @funding.name
+%h1 Catalog
 
 %table.table
   %tr
@@ -14,10 +9,8 @@
     %th Sala
     %th Właściciel
     %th Źródło finansowania
-    %th
-    %th
-    %th
 
+  
   - @stuffs.each do |stuff|
     %tr
       %td= stuff.name
@@ -28,11 +21,4 @@
       - user = User.find(stuff.user_id)
       %td= user.firstname + " " + user.lastname
       %td= Funding.find(stuff.funding_id).name
-
-%br
-
-= link_to ' Powrót', fundings_path, class: %w(glyphicon glyphicon-chevron-left)
-%br
-= link_to ' Pobierz PDF', {:format => :pdf}, class: %w(glyphicon glyphicon-download-alt)
-%br
-%br
+ 
