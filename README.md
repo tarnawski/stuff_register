@@ -1,3 +1,5 @@
+Wersja live aplikacji dostępna pod adresem:
+https://projektz3.herokuapp.com/
 
 Dokumentacja aplikacji dostpna pod adresem: 
 https://docs.google.com/document/d/1KLZUgRcGwxjL4hM1hyaOilssK9nwF31U2-kpVMpEW7w
