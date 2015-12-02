@@ -1,4 +1,11 @@
 language: ruby
 rvm:
   - 2.2.1
+addons:
+  postgresql: "9.3"
 
+services:
+  - postgresql
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - psql -c 'create database travis_ci_test' -U postgres
