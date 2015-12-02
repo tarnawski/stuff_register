@@ -1,15 +1,11 @@
 language: ruby
 rvm:
-  - 2.1.5
-deploy:
-  provider: heroku
-  api_key:
-    secure: <%= ENV['API_SECRET'] %>
-  run:
-    - 'rake db:migrate'
-  app: <%= ENV['HEROKU_APP_NAME'] %>
-  on:
-    repo: netguru-training/workshops
+  - 2.2.1
+addons:
+  postgresql: "9.3"
+
+services:
+  - postgresql
 before_script:
   - cp config/database.yml.travis config/database.yml
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'create database travis_ci_test' -U postgres
