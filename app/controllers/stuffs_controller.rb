@@ -20,7 +20,7 @@ class StuffsController < ApplicationController
         stuffs = stuffs & Stuff.where(user_id: params[:list][:user_id])
       end
       if params[:list][:room_id].present?
-        stuffs = stuffs & Stuff.where(user_id: params[:list][:room_id])
+        stuffs = stuffs & Stuff.where(room_id: params[:list][:room_id])
       end
       if params[:list][:type_id].present?
        stuffs = stuffs & Stuff.where(type_id: params[:list][:type_id])
