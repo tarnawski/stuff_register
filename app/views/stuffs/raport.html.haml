@@ -3,10 +3,10 @@
 
 = form_for :list, :url => {:controller => 'stuffs', :action => 'raport'} do |f|
   .form-group
-    = f.label :start_date
+    = f.label "Od:"
     = select_date Date.today, prefix: :start_date
   .form-group
-    = f.label :end_date
+    = f.label "Do:"
     = select_date Date.today, prefix: :end_date
   .form-actions
     = f.button :submit

@@ -2,16 +2,16 @@
 
 = form_for :list, :url => {:controller => 'stuffs', :action => 'catalog'} do |f|
   .form-group 
-    = f.label :type_id
+    = f.label "Typ"
     = f.collection_select :type_id, Type.all, :id, :name, prompt: true
   .form-group
-    = f.label :room_id
+    = f.label "Sala"
     = f.collection_select :room_id, Room.all, :id, :name, prompt: true
   .form-group
-    = f.label :funding_id
+    = f.label "Żródło finansowania"
     = f.collection_select :funding_id, Funding.all, :id, :name, prompt: true
   .form-group
-    = f.label :user_id
+    = f.label "Użytkownik"
     = f.collection_select :user_id, User.all, :id, :lastname, prompt: true
   .form-actions
     = f.button :submit
