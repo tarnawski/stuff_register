@@ -1,20 +1,20 @@
 %h1 Wybierz szczegóły raportu
 
-= form_for :list, :url => {:controller => 'stuffs', :action => 'catalog'} do |f|
+= form_for :list, :class =>"form-control", :url => {:controller => 'stuffs', :action => 'catalog'} do |f|
   .form-group 
-    = f.label :type_id
-    = f.collection_select :type_id, Type.all, :id, :name, prompt: true
+    = f.label "Typ"
+    = f.collection_select :type_id,  Type.all, :id, :name, {prompt: "Wybierz typ" }, {class: "form-control"}
   .form-group
-    = f.label :room_id
-    = f.collection_select :room_id, Room.all, :id, :name, prompt: true
+    = f.label "Sala"
+    = f.collection_select :room_id, Room.all, :id, :name, {prompt: "Wybierz sale"}, {class: "form-control"}
   .form-group
-    = f.label :funding_id
-    = f.collection_select :funding_id, Funding.all, :id, :name, prompt: true
+    = f.label "Źródło finansowania"
+    = f.collection_select :funding_id, Funding.all, :id, :name, {prompt: "Wybierz źródło finansowania" }, {class: "form-control"}
   .form-group
-    = f.label :user_id
-    = f.collection_select :user_id, User.all, :id, :lastname, prompt: true
+    = f.label "Użytkownik"
+    = f.collection_select :user_id, User.all, :id, :lastname, {prompt: "Wybierz użytkownika"}, {class: "form-control"}
   .form-actions
-    = f.button :submit
+    = f.button "Filtruj", class: "btn btn-success"
 
 %br
 %br
